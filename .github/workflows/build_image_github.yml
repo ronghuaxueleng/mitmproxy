@@ -12,6 +12,7 @@ jobs:
           git clone https://github.com/ronghuaxueleng/mitmproxy.git mitmproxy
           cd mitmproxy
           VERSION=7.0.3
+          docker build -t ronghuaxueleng/mitmproxy . --build-arg MITMPROXY_WHEEL=mitmproxy-$VERSION-py3-none-any.whl
           docker build -t ronghuaxueleng/mitmproxy:$VERSION . --build-arg MITMPROXY_WHEEL=mitmproxy-$VERSION-py3-none-any.whl
           docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push ronghuaxueleng/mitmproxy
