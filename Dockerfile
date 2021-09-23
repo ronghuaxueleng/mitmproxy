@@ -4,7 +4,7 @@ ARG MITMPROXY_WHEEL
 COPY $MITMPROXY_WHEEL /wheels/
 RUN pip install wheel && pip wheel --wheel-dir /wheels /wheels/${MITMPROXY_WHEEL}
 
-FROM python:3.9.6-alpine3.14
+FROM python:3.9.7-alpine3.14
 
 ENV LANG=en_US.UTF-8
 
