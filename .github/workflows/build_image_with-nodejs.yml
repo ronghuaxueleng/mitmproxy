@@ -1,0 +1,20 @@
+name: "构建Docker镜像-with-nodejs"
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 构建Docker镜像-with-nodejs
+    steps:
+      - name: docker build and push
+        run: |
+          git clone https://github.com/ronghuaxueleng/mitmproxy.git mitmproxy
+          cd mitmproxy
+          VERSION=7.0.3
+          NODE_VERSION=17.0.1
+          docker build -t ronghuaxueleng/mitmproxy-nodejs -f DockerfileWithNodeJs .
+          docker build -t ronghuaxueleng/mitmproxy-nodejs:$VERSION_$NODE_VERSION -f DockerfileWithNodeJs .
+          docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push ronghuaxueleng/mitmproxy-nodejs
+          docker push ronghuaxueleng/mitmproxy-nodejs:$VERSION_$NODE_VERSION
