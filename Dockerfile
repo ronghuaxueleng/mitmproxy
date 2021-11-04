@@ -29,6 +29,8 @@ RUN rm -rf /wheels
 VOLUME /home/mitmproxy/.mitmproxy
 
 COPY docker-entrypoint.sh /usr/local/bin/
+COPY _http2.py /usr/local/lib/python3.9/site-packages/mitmproxy/proxy/layers/http/
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 8080 8081
