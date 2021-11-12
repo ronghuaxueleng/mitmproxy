@@ -8,6 +8,8 @@ FROM python:3.9.7-alpine3.14
 
 ENV LANG=en_US.UTF-8
 
+COPY requirements.txt /
+
 RUN addgroup -S mitmproxy && adduser -S -G mitmproxy mitmproxy \
     && apk add --no-cache \
         su-exec \
@@ -20,7 +22,7 @@ RUN addgroup -S mitmproxy && adduser -S -G mitmproxy mitmproxy \
         openssl-dev \
     && python3 -m ensurepip --upgrade \
     && pip3 install -U pip \
-    && pip3 install -r requirements.txt
+    && pip3 install -r /requirements.txt
 
 RUN pip3 install git+https://github.com/ronghuaxueleng/supervisor-stdout.git
 
