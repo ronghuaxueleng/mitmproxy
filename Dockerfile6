@@ -38,6 +38,7 @@ VOLUME /home/mitmproxy/.mitmproxy
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s /usr/bin/python /usr/local/bin/python
 RUN ln -s /usr/bin/mitmdump /usr/local/bin/mitmdump
+RUN ln -s /usr/bin/supervisord /usr/local/bin/supervisord
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 8080 8081
