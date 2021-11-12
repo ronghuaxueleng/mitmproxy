@@ -8,8 +8,6 @@ FROM python:3.9.7-alpine3.14
 
 ENV LANG=en_US.UTF-8
 
-COPY requirements.txt /
-
 RUN addgroup -S mitmproxy && adduser -S -G mitmproxy mitmproxy \
     && apk add --no-cache \
         su-exec \
@@ -22,7 +20,7 @@ RUN addgroup -S mitmproxy && adduser -S -G mitmproxy mitmproxy \
         openssl-dev \
     && python3 -m ensurepip --upgrade \
     && pip3 install -U pip \
-    && pip3 install -r /requirements.txt
+    && pip3 install protobuf==3.17.3 Brotli==1.0.9 cryptography==3.3 zstandard==0.15.2 msgpack==1.0.2 tornado==6.1 MarkupSafe==2.0.1 ruamel.yaml.clib==0.2.6 supervisor==4.2.2
 
 RUN pip3 install git+https://github.com/ronghuaxueleng/supervisor-stdout.git
 
