@@ -14,8 +14,8 @@ jobs:
           VERSION=6.0.2
           NODE_VERSION=17.0.1
           wget https://snapshots.mitmproxy.org/$VERSION/mitmproxy-$VERSION-py3-none-any.whl
-          docker build -t ronghuaxueleng/mitmproxy-nodejs -f DockerfileWithNodeJs .
-          docker build -t ronghuaxueleng/mitmproxy-nodejs:$VERSION-$NODE_VERSION -f DockerfileWithNodeJs .
+          docker build -t ronghuaxueleng/mitmproxy-nodejs . --build-arg VERSION=$VERSION --build-arg NODE_VERSION=$NODE_VERSION -f DockerfileWithNodeJs
+          docker build -t ronghuaxueleng/mitmproxy-nodejs:$VERSION-$NODE_VERSION . --build-arg VERSION=$VERSION --build-arg NODE_VERSION=$NODE_VERSION -f DockerfileWithNodeJs
           docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push ronghuaxueleng/mitmproxy-nodejs
           docker push ronghuaxueleng/mitmproxy-nodejs:$VERSION-$NODE_VERSION

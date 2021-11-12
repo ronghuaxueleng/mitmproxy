@@ -22,7 +22,7 @@ RUN addgroup -S mitmproxy && adduser -S -G mitmproxy mitmproxy \
     && pip3 install -U pip \
     && pip3 install protobuf==3.17.3 Brotli==1.0.9 cryptography==3.3 zstandard==0.15.2 msgpack==1.0.2 tornado==6.1 MarkupSafe==2.0.1 ruamel.yaml.clib==0.2.6 supervisor==4.2.2
 
-RUN pip3 install git+https://gitee.com/getready/supervisor-stdout.git
+RUN pip3 install git+https://github.com/ronghuaxueleng/supervisor-stdout.git
 
 COPY --from=wheelbuilder /wheels /wheels
 RUN pip3 install --no-index --find-links=/wheels mitmproxy

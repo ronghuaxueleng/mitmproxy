@@ -1,6 +1,8 @@
-FROM ronghuaxueleng/mitmproxy:7.0.3
+ARG VERSION
+FROM ronghuaxueleng/mitmproxy:${VERSION}
 
-ENV NODE_VERSION 17.0.1
+ARG NODE_VERSION
+ENV NODE_VERSION ${NODE_VERSION}
 
 RUN addgroup -g 1000 node \
     && adduser -u 1000 -G node -s /bin/sh -D node \
