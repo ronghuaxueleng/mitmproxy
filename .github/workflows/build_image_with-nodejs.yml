@@ -12,7 +12,7 @@ jobs:
           git clone https://github.com/ronghuaxueleng/mitmproxy.git mitmproxy
           cd mitmproxy
           VERSION=6.0.2
-          NODE_VERSION=17.0.1
+          NODE_VERSION=14.18.1
           wget https://snapshots.mitmproxy.org/$VERSION/mitmproxy-$VERSION-py3-none-any.whl
           docker build -t ronghuaxueleng/mitmproxy-nodejs . --build-arg VERSION=$VERSION --build-arg NODE_VERSION=$NODE_VERSION -f DockerfileWithNodeJs
           docker build -t ronghuaxueleng/mitmproxy-nodejs:$VERSION-$NODE_VERSION . --build-arg VERSION=$VERSION --build-arg NODE_VERSION=$NODE_VERSION -f DockerfileWithNodeJs
