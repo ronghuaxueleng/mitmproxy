@@ -21,8 +21,8 @@ jobs:
           docker push ronghuaxueleng/mitmproxy-nodejs
           docker push ronghuaxueleng/mitmproxy-nodejs:$VERSION-$NODE_VERSION
       - name: 删除过多的workflows
-          uses: Mattraks/delete-workflow-runs@main
-          with:
-            token: ${{ secrets.AUTH_PAT }}
-            repository: ${{ github.repository }}
-            retain_days: 1
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          token: ${{ secrets.AUTH_PAT }}
+          repository: ${{ github.repository }}
+          retain_days: 1
