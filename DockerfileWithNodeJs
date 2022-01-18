@@ -20,7 +20,9 @@ RUN addgroup -g 1000 node \
           ;; \
         *) ;; \
       esac \
-  && if [ -n "$CHECKSUM" ]; then \
+      echo "==========${CHECKSUM}=======\n" \
+      echo ${CHECKSUM} \
+  && if [ -n "${CHECKSUM}" ]; then \
     set -eu; \
     curl -fsSLO --compressed "https://unofficial-builds.nodejs.org/download/release/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz"; \
     echo "$CHECKSUM  node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz" | sha256sum -c - \
