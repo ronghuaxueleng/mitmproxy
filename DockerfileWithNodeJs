@@ -17,8 +17,8 @@ RUN addgroup -g 1000 node \
   CHECKSUM="2fe80ab23de32b91a9f7679725369da1eb7833e778d2e16fdc31049d57cdc098" \
   ;; \
   *) ;; \
-  esac
-RUN if [ -n "${CHECKSUM}" ]; then \
+  esac \
+  && if [ -n "${CHECKSUM}" ]; then \
   set -eu; \
   curl -fsSLO --compressed "https://unofficial-builds.nodejs.org/download/release/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz"; \
   echo "$CHECKSUM  node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz" | sha256sum -c - \
@@ -27,7 +27,7 @@ RUN if [ -n "${CHECKSUM}" ]; then \
   else \
   echo "Building from source" \
   # backup build
-  apk add --no-cache --virtual .build-deps-full \
+  && apk add --no-cache --virtual .build-deps-full \
   binutils-gold \
   g++ \
   gcc \
@@ -81,9 +81,8 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
   ; do \
   gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
   gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \
-  done
-
-RUN curl -fsSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
+  done \
+  && curl -fsSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
   && curl -fsSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc" \
   && gpg --batch --verify yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
   && mkdir -p /opt \
