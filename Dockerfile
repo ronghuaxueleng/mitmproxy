@@ -32,6 +32,7 @@ VOLUME /home/mitmproxy/.mitmproxy
 
 COPY docker-entrypoint.sh /usr/local/bin/
 COPY _http2.py /usr/local/lib/python3.9/site-packages/mitmproxy/proxy/layers/http/
+ln -s /usr/bin/python3 /usr/local/bin/python3
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
