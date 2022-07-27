@@ -25,7 +25,7 @@ RUN  set -ex; \
      \
      apt-get purge -y --auto-remove $fetch_deps
 
-RUN apt-get install -y --no-install-recommends libffi \
+RUN apt-get install -y --no-install-recommends libffi6 \
         libffi-dev \
         libstdc++ \
         openssl \
