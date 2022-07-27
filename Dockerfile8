@@ -9,7 +9,8 @@ FROM python:3.10-slim-bullseye
 ENV LANG=en_US.UTF-8
 
 RUN useradd -mU mitmproxy
-RUN apt-get update && apt search libffi
+RUN apt-get update
+#RUN apt search libffi
 RUN apt-get install -y --no-install-recommends curl
 RUN  set -ex; \
      \
@@ -26,8 +27,8 @@ RUN  set -ex; \
      \
      apt-get purge -y --auto-remove $fetch_deps
 
-RUN apt-get install -y --no-install-recommends libffi6 \
-        libffi-dev \
+RUN apt-get install -y --no-install-recommends \
+        libffi-dev/stable \
         libstdc++ \
         openssl \
         openssl-dev \
