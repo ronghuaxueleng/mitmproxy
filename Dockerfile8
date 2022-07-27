@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libffi-dev \
         libstdc++ \
         openssl \
-        openssl-dev \
+        libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m ensurepip --upgrade \
