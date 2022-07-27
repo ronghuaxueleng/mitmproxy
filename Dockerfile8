@@ -8,8 +8,8 @@ FROM python:3.10-slim-bullseye
 
 ENV LANG=en_US.UTF-8
 
-RUN addgroup -S mitmproxy && adduser -S -G mitmproxy mitmproxy \
-    && apt-get update \
+RUN useradd -mU mitmproxy
+RUN apt-get update \
     && apt-get install -y --no-install-recommends su-exec \
         git \
         g++ \
