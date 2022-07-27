@@ -9,7 +9,7 @@ FROM python:3.10-slim-bullseye
 ENV LANG=en_US.UTF-8
 
 RUN useradd -mU mitmproxy
-RUN apt-get update
+RUN apt-get update && apt-get install -y --no-install-recommends curl
 RUN  set -ex; \
      \
      curl -o /usr/local/bin/su-exec.c https://raw.githubusercontent.com/ncopa/su-exec/master/su-exec.c; \
