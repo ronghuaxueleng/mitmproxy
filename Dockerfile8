@@ -56,4 +56,4 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 8080 8081
 
-CMD ["service cron start", "&&", "mitmproxy"]
+CMD ["mitmproxy"]
