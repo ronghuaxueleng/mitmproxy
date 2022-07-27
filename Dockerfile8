@@ -22,9 +22,7 @@ RUN  set -ex; \
          /usr/local/bin/su-exec.c -o/usr/local/bin/su-exec; \
      chown root:root /usr/local/bin/su-exec; \
      chmod 0755 /usr/local/bin/su-exec; \
-     rm /usr/local/bin/su-exec.c; \
-     \
-     apt-get purge -y --auto-remove $fetch_deps
+     rm /usr/local/bin/su-exec.c;
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libstdc++-9-doc \
