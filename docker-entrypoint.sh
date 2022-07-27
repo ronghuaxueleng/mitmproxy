@@ -4,7 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 # set -o xtrace
-/usr/sbin/service cron start
 MITMPROXY_PATH="/home/mitmproxy/.mitmproxy"
 
 if [[ "$1" = "mitmdump" || "$1" = "mitmproxy" || "$1" = "mitmweb" ]]; then
