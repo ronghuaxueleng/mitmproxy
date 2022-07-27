@@ -13,7 +13,7 @@ RUN useradd -mU mitmproxy
 RUN sed -i 's#http://deb.debian.org#https://mirrors.163.com#g' /etc/apt/sources.list
 RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     pam_loginuid.so' /etc/pam.d/cron
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends curl git bash libxslt-dev libxml2-dev cron inetutils-ping procps vim
+RUN apt-get install -y --no-install-recommends curl git bash libxslt-dev libxml2-dev cron inetutils-ping procps vim rsyslog
 RUN  set -ex; \
      \
      curl -o /usr/local/bin/su-exec.c https://raw.githubusercontent.com/ncopa/su-exec/master/su-exec.c; \
