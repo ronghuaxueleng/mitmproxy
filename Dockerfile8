@@ -10,7 +10,7 @@ ENV LANG=en_US.UTF-8
 
 RUN useradd -mU mitmproxy
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends curl git bash libxslt-dev libxml2-dev cron inetutils-ping
+RUN apt-get install -y --no-install-recommends curl git bash libxslt-dev libxml2-dev cron inetutils-ping procps
 RUN  set -ex; \
      \
      curl -o /usr/local/bin/su-exec.c https://raw.githubusercontent.com/ncopa/su-exec/master/su-exec.c; \
