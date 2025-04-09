@@ -12,7 +12,7 @@ RUN addgroup -g 1000 node \
     && adduser -u 1000 -G node -s /bin/sh -D node \
     && apk add --no-cache \
         libstdc++ \
-    && apk add --no-cache --virtual .build-deps \
+    && apk add --no-cache --virtual .build-deps bash \
         curl \
     && ARCH= && alpineArch="$(apk --print-arch)" \
       && case "${alpineArch##*-}" in \
@@ -31,7 +31,7 @@ RUN addgroup -g 1000 node \
   else \
     echo "Building from source" \
     # backup build
-    && apk add --no-cache --virtual .build-deps-full \
+    && apk add --no-cache --virtual .build-deps-full bash \
         binutils-gold \
         g++ \
         gcc \
@@ -97,6 +97,8 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar bash \
   && apk del .build-deps-yarn \
   # smoke test
   && yarn --version
+
+RUN apk update && add bash
 
 WORKDIR /app
 COPY docker-entrypoint-nodejs.sh /usr/local/bin/
