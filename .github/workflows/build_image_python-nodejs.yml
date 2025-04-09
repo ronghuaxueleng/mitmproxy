@@ -1,0 +1,18 @@
+name: "构建Docker镜像-python-nodejs"
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 构建Docker镜像-python-nodejs
+    steps:
+      - name: docker build and push
+        run: |
+          git clone https://github.com/ronghuaxueleng/mitmproxy.git mitmproxy
+          cd mitmproxy
+          NODE_VERSION=14.18.1
+          CHECKSUM="8d6d2b71b76dc31bbcf12827b9e60212bc04a556c3498e75708d38f5eb4ae6eb"
+          docker build -t ronghuaxueleng/python-nodejs . --build-arg CHECKSUM=$CHECKSUM --build-arg NODE_VERSION=$NODE_VERSION -f DockerfilePythonNode
+          docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push ronghuaxueleng/python-nodejs
