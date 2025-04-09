@@ -101,10 +101,10 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar bash \
 RUN apk update && apk add bash
 
 WORKDIR /app
-COPY docker-entrypoint-nodejs.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint-nodejs.sh
+COPY docker-entrypoint-py-nodejs.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 COPY security.py /.security
 
-ENTRYPOINT ["docker-entrypoint-nodejs.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 CMD [ "bash" ]
