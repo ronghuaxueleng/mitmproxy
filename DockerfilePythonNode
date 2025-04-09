@@ -96,7 +96,10 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
   # smoke test
   && yarn --version
 
+WORKDIR /app
 COPY docker-entrypoint-nodejs.sh /usr/local/bin/docker-entrypoint.sh
+COPY security.py /.security
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 CMD [ "node" ]
