@@ -1,5 +1,7 @@
 FROM python:3.9.7-alpine3.14
 
+ENV LANG=en_US.UTF-8
+
 ARG NODE_VERSION
 ENV NODE_VERSION ${NODE_VERSION}
 
@@ -97,9 +99,10 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
   && yarn --version
 
 WORKDIR /app
-COPY docker-entrypoint-nodejs.sh /usr/local/bin/docker-entrypoint.sh
+COPY docker-entrypoint-nodejs.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 COPY security.py /.security
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint-nodejs.sh"]
 
 CMD [ "node" ]
