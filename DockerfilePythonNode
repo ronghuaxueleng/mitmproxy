@@ -107,4 +107,4 @@ COPY security.py /.security
 
 ENTRYPOINT ["docker-entrypoint-nodejs.sh"]
 
-CMD [ "node" ]
+CMD [ "bash" ]
