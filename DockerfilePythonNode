@@ -1,4 +1,4 @@
-FROM python:3.9-buster
+FROM python:3.9.7-alpine3.14
 
 ARG NODE_VERSION
 ENV NODE_VERSION ${NODE_VERSION}
