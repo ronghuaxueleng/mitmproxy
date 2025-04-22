@@ -98,13 +98,15 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar bash \
   # smoke test
   && yarn --version
 
-RUN apk update && apk add bash
+RUN apk update && apk add bash supervisor==4.2.2
+RUN pip3 install git+https://github.com/ronghuaxueleng/supervisor-stdout.git
 
 WORKDIR /app
 COPY docker-entrypoint-py-nodejs.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 COPY security.py /.security
 COPY supervisord.conf /etc/
+RUN ln -s /usr/bin/supervisord /usr/local/bin/supervisord
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
