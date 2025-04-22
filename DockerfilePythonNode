@@ -98,7 +98,7 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar bash \
   # smoke test
   && yarn --version
 
-RUN apk update && apk add bash supervisor==4.2.2
+RUN apk update && apk add bash supervisor
 RUN pip3 install git+https://github.com/ronghuaxueleng/supervisor-stdout.git
 
 WORKDIR /app
