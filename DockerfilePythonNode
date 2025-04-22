@@ -99,13 +99,14 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar bash \
   && yarn --version
 
 RUN apk update && apk add bash supervisor
-RUN pip3 install git+https://github.com/ronghuaxueleng/supervisor-stdout.git
 
 WORKDIR /app
 COPY docker-entrypoint-py-nodejs.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 COPY security.py /.security
 COPY supervisord.conf /etc/
+RUN ln -s /usr/bin/python3 /usr/local/bin/python
+RUN ln -s /usr/bin/python3 /usr/local/bin/python3
 RUN ln -s /usr/bin/supervisord /usr/local/bin/supervisord
 
 ENTRYPOINT ["docker-entrypoint.sh"]
