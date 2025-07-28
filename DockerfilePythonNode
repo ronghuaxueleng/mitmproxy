@@ -138,10 +138,7 @@ COPY docker-entrypoint-py-nodejs.sh  /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh 
 COPY security.py  /.security 
 COPY supervisord.conf  /etc/
- 
-# 建立软链接
-RUN ln -s /usr/bin/supervisord /usr/local/bin/supervisord
- 
+  
 # 设置入口点
 ENTRYPOINT ["docker-entrypoint.sh"] 
  
